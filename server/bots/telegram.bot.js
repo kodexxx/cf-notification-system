@@ -8,10 +8,6 @@ class Telegram {
         this.init = this.init.bind(this);
     }
 
-    get bot() {
-        return this._bot;
-    }
-
     init() {
         this._bot = new TelegramBot(config.telegramToken, {
             polling: true,
@@ -20,16 +16,25 @@ class Telegram {
         this._initCommands();
     }
 
+    sendNotify(uid, title, text) {
+        return this._bot.sendMessage(uid, `*${title}*\n\n${text}`, {
+            parse_mode: 'Markdown',
+        });
+    }
+
     _initCommands() {
         this._bot.onText(/\/start/, (msg) => {
+
             //processing link for tie telegram with codefresh account
+
             this._bot.sendMessage(msg.chat.id, msg.chat.id, {
                 parse_mode: 'Markdown',
                 reply_markup: {
-                    keyboard: [
+                    inline_keyboard: [
                         [
                             {
                                 text: 'Tie telegram',
+                                url: 'https://example.com/callback',
                             },
                         ],
                     ],
