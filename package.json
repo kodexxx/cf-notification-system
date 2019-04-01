@@ -8,9 +8,10 @@
     "axios": "^0.18.0",
     "express": "^4.16.4",
     "node-telegram-bot-api": "^0.30.0",
-    "events-proxy": "git+https://github.com/kodexxx/cf-events-proxy.git#4dea7b19ea634a0f82acf37549dbaf642918a040"
+    "events-proxy": "git+https://github.com/kodexxx/cf-events-proxy.git#d273c13fcc7b55781d8123919914145e97c3619e"
   },
   "scripts": {
     "start": "node ."
   }
 }
+events-proxy
