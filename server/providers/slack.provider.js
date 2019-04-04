@@ -6,19 +6,15 @@ class SlackProvider {
         this.sendNotify = this.sendNotify.bind(this);
     }
 
-    sendNotify(providerInfo, data) {
+    sendNotify(data, message) {
         return axios({
             method: 'post',
-            url: providerInfo.url,
+            url: data.webhookUri,
             data: {
                 type: 'mrkdwn',
-                text: this._processData(data),
+                text: message,
             },
         });
-    }
-
-    _processData(data) {
-        return `*${data.title}*\n\n${data.message}`;
     }
 }
 

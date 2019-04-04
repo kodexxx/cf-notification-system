@@ -6,20 +6,16 @@ class TwilioProvider {
         this.client = twilio(config.twilio.sid, config.twilio.token);
     }
 
-    sendNotify(providerInfo, data) {
+    sendNotify(data, message) {
         try {
             return this.client.messages.create({
                 from: config.twilio.from,
-                body: this._processData(data),
-                to: providerInfo.phone,
+                body: message,
+                to: data.phone,
             });
         } catch (e) {
             return Promise.reject(e);
         }
-    }
-
-    _processData(data) {
-        return `${data.title}\n\n${data.message}`;
     }
 }
 

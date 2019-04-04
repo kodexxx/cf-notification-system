@@ -19,7 +19,14 @@ class Telegram {
     sendNotify(uid, message) {
         return this._bot.sendMessage(uid, message, {
             parse_mode: 'Markdown',
+
         });
+    }
+
+    sendWithImageNotify(uid, imageUri, message) {
+        return this._bot.sendPhoto(uid, imageUri, message ? {
+            caption: message,
+        } : {});
     }
 
     _initCommands() {

@@ -1,10 +1,6 @@
+const router = require('express').Router();
 const integrationController = require('./integration.controller');
 
-const router = require('express').Router();
-
-
-router.route('/')
-    .post(integrationController.addIntegrationToUser)
-    .get(integrationController.list);
+router.get('/', integrationController.getSupportedEvents);
 
 module.exports = router;
