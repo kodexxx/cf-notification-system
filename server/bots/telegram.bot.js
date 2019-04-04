@@ -16,8 +16,8 @@ class Telegram {
         this._initCommands();
     }
 
-    sendNotify(uid, title, text) {
-        return this._bot.sendMessage(uid, `*${title}*\n\n${text}`, {
+    sendNotify(uid, message) {
+        return this._bot.sendMessage(uid, message, {
             parse_mode: 'Markdown',
         });
     }

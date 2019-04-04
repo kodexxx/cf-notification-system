@@ -1,15 +1,24 @@
 const axios = require('axios');
 
 class SlackProvider {
-    sendNotify(providerInfo, title, body) {
+
+    constructor() {
+        this.sendNotify = this.sendNotify.bind(this);
+    }
+
+    sendNotify(providerInfo, data) {
         return axios({
             method: 'post',
             url: providerInfo.url,
             data: {
                 type: 'mrkdwn',
-                text: `*${title}*\n\n${body}`,
+                text: this._processData(data),
             },
         });
+    }
+
+    _processData(data) {
+        return `*${data.title}*\n\n${data.message}`;
     }
 }
 

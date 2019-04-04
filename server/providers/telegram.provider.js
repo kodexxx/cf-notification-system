@@ -1,8 +1,12 @@
 const telegram = require('../bots/telegram.bot');
 
 class TelegramProvider {
-    sendNotify(providerInfo, title, body) {
-        return telegram.sendNotify(providerInfo.uid, title, body);
+    sendNotify(providerInfo, data) {
+        return telegram.sendNotify(providerInfo.uid, this._processData(data));
+    }
+
+    _processData(data) {
+        return `*${data.title}*\n\n${data.message}`
     }
 }
 
