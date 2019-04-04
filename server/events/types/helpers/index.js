@@ -1,4 +1,4 @@
-const_ = require('lodash');
+const _ = require('lodash');
 
 class NotificationHelper {
     markdownTgGenerateList(obj) {

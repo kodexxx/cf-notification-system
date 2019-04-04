@@ -26,6 +26,7 @@ class Telegram {
     sendWithImageNotify(uid, imageUri, message) {
         return this._bot.sendPhoto(uid, imageUri, message ? {
             caption: message,
+            parse_mode: 'Markdown',
         } : {});
     }
 

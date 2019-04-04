@@ -9,9 +9,11 @@ const ApiRouter = require('./api');
 const errorMiddleware = require('./errors/errors.middleware');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const eventHandler = require('./services/events.handler');
 
 const init = async () => {
     await eventProxy.init();
+    eventHandler();
     tgBot.init();
 
     dbConnection(() => {
