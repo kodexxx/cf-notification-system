@@ -5,10 +5,15 @@ const FAIL_IMAGE = 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Fail_sta
 
 module.exports = {
     telegram(settings, data) {
-        const text = `*Build successfully finished*\n\n${helper.markdownTgGenerateList(data)}`;
+        const text = `*Build failed*\n\n${helper.markdownTgGenerateList(data)}`;
         return providers.telegram.sendWithImageNotify(settings, FAIL_IMAGE, text);
     },
     slack(settings, data) {
-        return providers.slack.sendNotify(settings, helper.markdownTgGenerateList(data));
+        const text = `*Build failed*\n\n${helper.markdownTgGenerateList(data)}`;
+        return providers.slack.sendNotify(settings, text);
+    },
+    twilio(settings, data) {
+        const text = `*Build failed*\n\n${helper.formatObjectText(data)}`;
+        return providers.twilio.sendNotify(settings, text);
     },
 };

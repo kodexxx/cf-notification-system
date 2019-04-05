@@ -1,9 +1,11 @@
+const logger = require('../logger');
 const { BaseError } = require('./index');
+
 module.exports = ({ debug } = { debug: false }) => (err, req, res, next) => {
     if (!err) return next();
 
     if (debug) {
-        console.error(err);
+        logger.error(err);
     }
 
     if (err instanceof BaseError) {

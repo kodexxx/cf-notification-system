@@ -1,34 +1,21 @@
-const eventProxy = require('events-proxy');
-const express = require('express');
-
-const config = require('../config');
-const dbConnection = require('./mongo.connection');
-const tgBot = require('./bots/telegram.bot');
-const providers = require('./providers');
-const ApiRouter = require('./api');
-const errorMiddleware = require('./errors/errors.middleware');
 const cors = require('cors');
+const express = require('express');
 const bodyParser = require('body-parser');
+const eventProxy = require('events-proxy');
+
+
+const ApiRouter = require('./api');
+const logger = require('./logger');
+const config = require('../config');
+const tgBot = require('./bots/telegram.bot');
 const eventHandler = require('./services/events.handler');
+const errorMiddleware = require('./errors/errors.middleware');
+
 
 const init = async () => {
     await eventProxy.init();
-    eventHandler();
+    eventHandler.init();
     tgBot.init();
-
-    dbConnection(() => {
-        console.log('mongo ready');
-    });
-
-    eventProxy.subscribe('notifyEvent', (data) => {
-        const { provider, notifyData } = data;
-
-        if (!providers.hasOwnProperty(provider.id)) {
-            return Promise.resolve();
-        }
-
-        return providers[provider.id].sendNotify(provider.data, notifyData);
-    });
 
     const app = express();
 
@@ -40,13 +27,13 @@ const init = async () => {
     app.use(errorMiddleware());
 
     app.listen(config.port, () => {
-        console.log(`express app successfully started at ${config.port}`);
+        logger.info(`express app successfully started at ${config.port}`);
     });
 };
 
 
 init()
-    .catch(console.error);
+    .catch((e) => logger.error(e));
 
 
 

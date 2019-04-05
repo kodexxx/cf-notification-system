@@ -13,7 +13,8 @@
     "lodash": "^4.17.11",
     "mongoose": "^5.4.21",
     "node-telegram-bot-api": "^0.30.0",
-    "twilio": "^3.30.0"
+    "twilio": "^3.30.0",
+    "winston": "^3.2.1"
   },
   "scripts": {
     "start": "node ."
