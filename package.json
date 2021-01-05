@@ -5,7 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "amqplib": "^0.5.3",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "events-proxy": "git+https://github.com/kodexxx/cf-events-proxy.git#7554adaec0ec0e586c2fd00d0e4a6ee97b95f7a0",
