@@ -11,7 +11,7 @@
     "events-proxy": "git+https://github.com/kodexxx/cf-events-proxy.git#7554adaec0ec0e586c2fd00d0e4a6ee97b95f7a0",
     "express": "^4.16.4",
     "jest": "^24.7.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "mongoose": "^5.4.21",
     "node-telegram-bot-api": "^0.30.0",
     "twilio": "^3.30.0",
